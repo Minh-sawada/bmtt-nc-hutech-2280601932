@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+
 from cipher.caesar import CaesarCipher
 from cipher.vigenere import VigenereCipher
 
@@ -29,7 +30,7 @@ def caesar_decrypt():
 def vigenere_encrypt():
     data = request.json
     plain_text = data['plain_text']
-    key = (data['key']) 
+    key = data['key']  # Để nguyên, không cần ép kiểu int
     encrypted_text = vigenere_Cipher.vigenere_encrypt(plain_text, key)
     return jsonify({'encrypt_message': encrypted_text})
 
@@ -37,7 +38,7 @@ def vigenere_encrypt():
 def vigenere_decrypt():
     data = request.json
     cipher_text = data['cipher_text']
-    key = (data['key'])
+    key = data['key']  # Để nguyên, không cần ép kiểu int
     decrypted_text = vigenere_Cipher.vigenere_decrypt(cipher_text, key)
     return jsonify({'decrypt_message': decrypted_text})
 
